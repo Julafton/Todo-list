@@ -2,15 +2,14 @@
 
 Setup:
 
-Run "pip install -r  .\requirements.txt" on windows
-Run "pip3 install -r  .\requirements.txt" on Linux and mac
+Run "pip install -r .\requirements.txt" on windows Run "pip3 install -r .\requirements.txt" on Linux and mac
 
-Create a .env
+Create a .env that looks like this
+
+BACKEND_FOLDER_PATH = "The backend folder path" 
+IP = "Your local ip" 
+PORT = "The port you want the app to run on"
 
 Create a "users" directory in the backend folder
-
-Write BACKEND_FOLDER_PATH = "The backend folder path"
-Write IP = "Your local ip"
-Write PORT = "The port you want the app to run on"
 
 Run server.py
