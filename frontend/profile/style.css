@@ -1,7 +1,7 @@
 body {
     text-align: center;
     background-image: url("background.jpg");
-    background-size: 300%;
+    background-size: 350%;
     background-repeat: no-repeat;
 }
 .confirmdiv {
@@ -24,7 +24,7 @@ body {
     font-weight: bold;
 }
 .confirmdiv button {
-    width: 30%;
+    width: fit-content;
     height: 40px;
     font-size: 30px;
     border-radius: 10px;
@@ -101,7 +101,7 @@ body {
     cursor: pointer;
 }
 .logindiv button, .registerdiv button, .profilediv button {
-    width: 40%;
+    width: 45%;
     color: white;
     font-size: 25px;
     padding: 5px;
@@ -113,4 +113,17 @@ body {
 }
 .registerdiv, .profilediv {
     display: none;
+}
+@media (max-height: 900px) {
+    .logindiv, .profilediv, .registerdiv {
+        margin-top: 0px;
+        height: 500px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .logindiv button, .profilediv button, .registerdiv button {
+        font-size: 17px;
+    }
 }
