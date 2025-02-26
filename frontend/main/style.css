@@ -45,6 +45,16 @@ body {
     bottom: 100px;
     overflow: hidden;
 }
+@media (max-height: 900px) {
+    .tododiv {
+        margin-top: 0px;
+        height: 500px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
 .tododiv::after {
     content: "";
     width: 100%;
