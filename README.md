@@ -1,4 +1,4 @@
-// Dont use this for production its not secure \\
+/ Dont use this for production its not secure \
 
 Setup:
 
