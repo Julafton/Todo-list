@@ -19,6 +19,30 @@ def index():
 def profile():
     return render_template("profile/index.html")
 
+@app.route("/dashbord")
+def Dashbord():
+    return render_template("dashbord/index.html")
+
+@app.route("/api/getusers/<token>")
+def getusers(token):
+
+    with open(f"{BACKEND_FOLDER_PATH}/users/admin/admin.json", "r") as f:
+        filedata = json.load(f)
+        filetoken = filedata.get("token")
+
+        if token != filetoken:
+            return ""
+
+    users = []
+
+    for user in os.listdir(f"{BACKEND_FOLDER_PATH}/users/"):
+        username = os.fsdecode(user)
+        print(username)
+
+        users.append(username)
+    
+    return jsonify(users)
+
 @app.errorhandler(404)
 def notfound(e):
     return render_template("404/index.html")
@@ -238,7 +262,7 @@ def gettodos():
 
                             return jsonify(filedata)
 
-                        return "404"
+                        return "Error"
                 
                 return "Error"
             
