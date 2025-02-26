@@ -1,0 +1,29 @@
+body {
+    background-color: #3e3e3e;
+    text-align: center;
+}
+.dashborddiv {
+    border: 2px black solid;
+    width: 80%;
+    height: 600px;
+    margin: auto;
+    margin-top: 80px;
+}
+.dashborddiv h1 {
+    color: white;
+    font-size: 30px;
+    font-family: arial;
+}
+.users {
+    height: fit-content;
+    max-height: 510px;
+    overflow-y: auto;
+}
+.users::-webkit-scrollbar {
+    display: none;
+}
+.users a {
+    color: white;
+    font-size: 25px;
+    font-family: arial;
+}

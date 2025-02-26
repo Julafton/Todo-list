@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashbord</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='shared/icon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashbord/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='shared/nav.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <button>Home</button>
+            <button onclick="window.location.href='/profile'">Profile</button>
+        </nav>
+
+        <div class="dashborddiv">
+            <h1 id="usersH1">Registered users: </h1>
+            <div class="users">
+    
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='dashbord/index.js') }}"></script>
+    <script src="{{ url_for('static', filename='shared/auth.js') }}"></script>
+</body>
+</html>
