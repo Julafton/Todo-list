@@ -2,7 +2,7 @@
 
 Setup:
 
-Run "pip install -r .\requirements.txt" on windows
+Run "pip install -r .\requirements.txt"
 
 Create a .env that looks like this
 
