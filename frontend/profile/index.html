@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='shared/icon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='shared/nav.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <button onclick="window.location.href='/'">Home</button>
+            <button>Profile</button>
+        </nav>
+
+        <div class="logindiv">
+            <p>Login</p>
+            <input type="text" spellcheck="false" id="usernameinput" placeholder="Username: "><br>
+            <input type="password" spellcheck="false" id="passwordinput" placeholder="Password: "><br>
+            <span>Dont have an account? <a onclick="changepage('register')">Register</a></span><br>
+            <button onclick="login()">Login</button>
+        </div>
+
+        <div class="registerdiv">
+            <p>Register</p>
+            <input type="text" spellcheck="false" id="usernameinput" placeholder="Username: "><br>
+            <input type="password" spellcheck="false" id="passwordinput" placeholder="Password: "><br>
+            <span>Already have an account? <a onclick="changepage('login')">Login</a></span><br>
+            <button onclick="register()">Register</button>
+        </div>
+
+        <div class="profilediv">
+            <p id="nameP"></p>
+            <hr>
+            <input type="text" spellcheck="false" id="newusernameinput" placeholder="New username: ">
+            <input type="password" spellcheck="false" id="newpasswordinput" placeholder="New password: ">
+            <button onclick="changeusername()">Change username</button><br>
+            <button onclick="changepassword()">Change password</button><br>
+            <button onclick="logout()">Sign out</button><br>
+            <button onclick="toggledelete()">Delete account</button>
+        </div>
+
+        <div class="confirmdiv">
+            <h1>Delete account?</h1>
+            <button id="deletebtn" onclick="deleteaccount()">Delete</button><br>
+            <button id="cancelbtn" onclick="toggledelete()">Cancel</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='profile/index.js') }}"></script>
+    <script src="{{ url_for('static', filename='shared/auth.js') }}"></script>
+</body>
+</html>

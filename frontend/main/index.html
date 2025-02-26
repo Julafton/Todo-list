@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='shared/icon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='shared/nav.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <button>Home</button>
+            <button onclick="window.location.href='/profile'">Profile</button>
+        </nav>
+
+        <div class="popupdiv">
+            <h1>Warning</h1>
+            <h2>You are not logged in so your todos wont save!</h2>
+            <button onclick="popup('CLOSE')">Close</button>
+        </div>
+
+        <div class="tododiv">
+            <p>To do list</p>
+            <hr>
+            <p id="countP">You have 0 items</p>
+            <input type="text" id="iteminput" placeholder="Item name: "><br>
+            <button onclick="additem()">Add</button>
+
+            <div class="todos"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='main/index.js') }}"></script>
+    <script src="{{ url_for('static', filename='shared/auth.js') }}"></script>
+</body>
+</html>

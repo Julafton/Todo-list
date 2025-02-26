@@ -1,0 +1,116 @@
+body {
+    text-align: center;
+    background-image: url("background.jpg");
+    background-size: 300%;
+    background-repeat: no-repeat;
+}
+.confirmdiv {
+    width: 80%;
+    height: 300px;
+    background-color: #3e3e3e;
+    margin: auto;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: none;
+    border-radius: 10px;
+    display: none;
+}
+.confirmdiv h1 {
+    color: white;
+    font-size: 30px;
+    font-family: arial;
+    font-weight: bold;
+}
+.confirmdiv button {
+    width: 30%;
+    height: 40px;
+    font-size: 30px;
+    border-radius: 10px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+}
+#deletebtn {
+    color: red;
+}
+.logindiv, .registerdiv, .profilediv {
+    position: relative;
+    background-color: transparent;
+    width: 70%;
+    height: 400px;
+    margin: auto;
+    margin-top: 200px;
+    text-align: center;
+}
+.profilediv {
+    height: 550px;
+}
+.logindiv::after, .registerdiv::after, .profilediv::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    backdrop-filter: blur(15px);
+    z-index: -1;
+    border: 4px #c4cac639 solid;
+    border-radius: 10px;
+}
+.logindiv p, .registerdiv p, .profilediv p {
+    color: white;
+    font-family: arial;
+    font-size: 30px;
+    font-weight: bold;
+    position: relative;
+    top: 30px;
+}
+.profilediv hr {
+    position: relative;
+    left: 4px;
+}
+.logindiv input, .registerdiv input, .profilediv input {
+    width: 80%;
+    color: white;
+    background: #ffffff16;
+    border: 2px #c4cac639 solid;
+    border-radius: 10px;
+    font-size: 20px;
+    outline: none;
+    margin: 5px;
+    padding: 10px;
+    text-indent: 2px;
+}
+#usernameinput {
+    margin-top: 30px;
+}
+::placeholder {
+    color: white;
+}
+.logindiv span, .registerdiv span {
+    color: white;
+    font-size: 15px;
+    font-family: arial;
+}
+.logindiv a, .registerdiv a {
+    color: #006aff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.logindiv button, .registerdiv button, .profilediv button {
+    width: 40%;
+    color: white;
+    font-size: 25px;
+    padding: 5px;
+    background: #ffffff16;
+    border: 2px #c4cac639 solid;
+    border-radius: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.registerdiv, .profilediv {
+    display: none;
+}
