@@ -7,6 +7,8 @@ Run "pip3 install -r  .\requirements.txt" on Linux and mac
 
 Create a .env
 
+Create a "users" directory in the backend folder
+
 Write BACKEND_FOLDER_PATH = "The backend folder path"
 Write IP = "Your local ip"
 Write PORT = "The port you want the app to run on"
