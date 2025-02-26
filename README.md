@@ -2,7 +2,7 @@
 
 Setup:
 
-Run "pip install -r .\requirements.txt" on windows Run "pip3 install -r .\requirements.txt" on Linux and mac
+Run "pip install -r .\requirements.txt" on windows
 
 Create a .env that looks like this
 
