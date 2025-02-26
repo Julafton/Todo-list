@@ -1,0 +1,130 @@
+body {
+    background-color: #3e3e3e;
+    text-align: center;
+}
+.popupdiv {
+    position: relative;
+    top: 200px;
+    width: 60%;
+    height: 200px;
+    border-radius: 10px;
+    margin: auto;
+    background-color: #3e3e3e;
+    z-index: 2;
+    visibility: hidden;
+}
+.popupdiv h1 {
+    color: red;
+    font-size: 30px;
+    font-family: arial;
+    font-weight: bold;
+}
+.popupdiv h2 {
+    color: white;
+    font-size: 25px;
+    font-family: arial;
+    font-weight: bold;
+}
+.popupdiv button {
+    background-color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+.tododiv {
+    background-color: transparent;
+    width: 70%;
+    height: 600px;
+    margin: auto;
+    margin-top: 50px;
+    border: 4px #c4cac639 solid;
+    border-radius: 10px;
+    position: relative;
+    bottom: 100px;
+    overflow: hidden;
+}
+@media (max-height: 900px) {
+    .tododiv {
+        margin-top: 0px;
+        height: 500px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+.tododiv::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("background.jpg");
+    background-size: cover;
+    background-position: 700px;
+    filter: blur(3px);
+    z-index: -1;
+}
+.tododiv hr {
+    width: 50%;
+}
+.tododiv p {
+    color: white;
+    font-size: 20px;
+    font-family: arial;
+    font-weight: bold;
+    cursor: default;
+}
+.tododiv input {
+    background-color: #c4cac639;
+    border: none;
+    font-size: 20px;
+    border-radius: 10px;
+    text-indent: 3px;
+    padding: 10px;
+    color: white;
+    outline: none;
+}
+::placeholder {
+    color: white;
+}
+.tododiv button {
+    background-color: #c4cac639;
+    border: none;
+    width: 30%;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    outline: none;
+    margin-top: 5px;
+    cursor: pointer;
+}
+.todos {
+    height: 370px;
+    overflow-y: auto;
+}
+.todos::-webkit-scrollbar {
+    display: none;
+}
+.todo {
+    background-color: #8b8b8b39;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 0px 50px 5px 50px;
+    height: 80px;
+    margin: auto;
+    margin-top: 10px;
+}
+.todo button {
+    border: none;
+    border-radius: 10px;
+    width: fit-content;
+    background-color: red;
+    font-size: 19px;
+    padding: 5px;
+    cursor: pointer;
+}
