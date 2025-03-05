@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 from uuid import uuid4
 from dotenv import find_dotenv, load_dotenv
 import json, bcrypt, os
@@ -21,7 +21,13 @@ def profile():
 
 @app.route("/dashbord")
 def Dashbord():
-    return render_template("dashbord/index.html")
+    allowed_ip = os.getenv("ADMIN_IP")
+    ip = request.remote_addr
+
+    if ip in allowed_ip:
+        return render_template("dashbord/index.html")
+    
+    return redirect("/")
 
 @app.route("/api/getusers/<token>")
 def getusers(token):
