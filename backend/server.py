@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 from uuid import uuid4
 from dotenv import find_dotenv, load_dotenv
 import json, bcrypt, os
@@ -18,6 +18,79 @@ def index():
 @app.route("/profile")
 def profile():
     return render_template("profile/index.html")
+
+@app.route("/dashbord")
+def Dashbord():
+    allowed_ip = os.getenv("ADMIN_IP")
+    ip = request.remote_addr
+
+    if ip in allowed_ip:
+        return render_template("dashbord/index.html")
+    
+    return redirect("/")
+
+@app.route("/api/getusers/<token>")
+def getusers(token):
+    allowed_ip = os.getenv("ADMIN_IP")
+    ip = request.remote_addr
+
+    if ip in allowed_ip:
+        with open(f"{BACKEND_FOLDER_PATH}/users/admin/admin.json", "r") as f:
+            filedata = json.load(f)
+            filetoken = filedata.get("token")
+
+            if token != filetoken:
+                return ""
+
+        users = []
+
+        for user in os.listdir(f"{BACKEND_FOLDER_PATH}/users/"):
+            username = os.fsdecode(user)
+
+            users.append(username)
+
+        return jsonify(users)
+    
+    return "Error"
+
+@app.route("/api/Deleteuser", methods=["POST"])
+def DeleteUser():
+    allowed_ip = os.getenv("ADMIN_IP")
+    ip = request.remote_addr
+
+    if request.method == "POST" and ip in allowed_ip:
+        data = request.get_json("a")
+        username = data.get("username")
+        token = data.get("token")
+        user = data.get("user")
+
+        if username == "admin":
+            with open(f"{BACKEND_FOLDER_PATH}/users/admin/admin.json", "r") as f:
+                filedata = json.load(f)
+                filetoken = filedata.get("token")
+
+                if token != filetoken:
+                    return ""
+                
+            try:
+                os.remove(f"{BACKEND_FOLDER_PATH}/users/{user}/{user}.json")
+            except:
+                pass
+            try:
+                os.remove(f"{BACKEND_FOLDER_PATH}/users/{user}/todos.json")
+            except:
+                pass
+            try:
+                os.rmdir(f"{BACKEND_FOLDER_PATH}/users/{user}")
+            except:
+                pass
+
+            return "200"
+        
+        return "Error"
+    
+    return "Error"
+
 
 @app.errorhandler(404)
 def notfound(e):
@@ -238,7 +311,7 @@ def gettodos():
 
                             return jsonify(filedata)
 
-                        return "404"
+                        return "Error"
                 
                 return "Error"
             

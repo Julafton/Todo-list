@@ -1,0 +1,62 @@
+body {
+    background-color: #3e3e3e;
+    text-align: center;
+}
+.dashborddiv {
+    background-color: transparent;
+    width: 70%;
+    height: 600px;
+    margin: auto;
+    margin-top: 150px;
+    border: 4px #c4cac639 solid;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+@media (max-height: 900px) {
+    .dashborddiv {
+        margin-top: 0px;
+        height: 500px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+.dashborddiv::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("background.png");
+    background-size: cover;
+    background-position: 0px;
+    background-repeat: no-repeat;
+    filter: blur(3px);
+    z-index: -1;
+}
+.dashborddiv h1 {
+    color: white;
+    font-size: 30px;
+    font-family: arial;
+    cursor: default;
+}
+.users {
+    height: fit-content;
+    max-height: 510px;
+    overflow-y: auto;
+}
+.users::-webkit-scrollbar {
+    display: none;
+}
+.users a {
+    color: white;
+    font-size: 25px;
+    font-family: arial;
+    cursor: pointer;
+}
+.users hr {
+    width: 10%;
+}
