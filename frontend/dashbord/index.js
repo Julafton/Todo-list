@@ -1,4 +1,4 @@
-let usercount = 0;
+let users = [];
 
 class userclass {
     constructor(name) {
@@ -13,27 +13,73 @@ class userclass {
         let usersdiv = document.querySelector(".users");
 
         a.addEventListener("click", () => {
-            usercount--;
-            document.getElementById("usersH1").textContent = `Registered users: ${usercount}`;
-            a.style.display = "none";
-            br.style.display = "none";
-            hr.style.display = "none";
+            document.getElementById("userinput").value = this.name;
+        });
 
-            fetch("/api/Deleteuser", {
+        this.a = a;
+        this.br = br;
+        this.hr = hr;
+
+        usersdiv.appendChild(a);
+        usersdiv.appendChild(br);
+        usersdiv.appendChild(hr);
+        users.unshift(this);
+    }
+}
+
+function WarnUser() {
+    let username = document.getElementById("userinput");
+    let message = document.getElementById("messageinput");
+
+    users.forEach((user) => {
+        if (user.name = username.value) {
+            fetch("/api/WarnUser", {
                 method: "POST",
                 "Content-Type": "Application/Json",
                 body: JSON.stringify({
                     "username": localStorage.getItem("username"),
                     "token": localStorage.getItem("token"),
-                    "user": this.name,
-                })
-            });
-        });
+                    "user": username.value,
+                    "message": message.value,
+                }),
+            })
+            .then((response) => response.text())
+            .then((data) => {
+                if (data == "200") {
+                    message.value = "";
+                }
+            })
+        }
+    });
+}
 
-        usersdiv.appendChild(a);
-        usersdiv.appendChild(br);
-        usersdiv.appendChild(hr);
-    }
+function DeleteUser() {
+    let username = document.getElementById("userinput");
+
+    fetch("/api/Deleteuser", {
+        method: "POST",
+        "Content-Type": "Application/Json",
+        body: JSON.stringify({
+            "username": localStorage.getItem("username"),
+            "token": localStorage.getItem("token"),
+            "user": username.value,
+        }),
+    })
+    .then((response) => response.text())
+    .then((data) => {
+         if (data == "200") {
+            users.forEach((user) => {
+                if (user.name == username.value) {
+                    users.splice(users.indexOf(user), users.indexOf(user) + 1);
+                    user.a.style.display = "none";
+                    user.br.style.display = "none";
+                    user.hr.style.display = "none";
+                }
+            });
+
+            document.getElementById("usersH1").textContent = `Registered users: ${users.length}`;
+         }
+    });
 }
 
 window.onload = () => {
@@ -48,12 +94,11 @@ window.onload = () => {
             fetch(`/api/getusers/${localStorage.getItem("token")}`)
             .then((response) => response.json())
             .then((data) => {
-                usercount = data.length;
-                document.getElementById("usersH1").textContent = `Registered users: ${usercount}`;
-
                 data.forEach((user) => {
                     new userclass(user);
                 });
+
+                document.getElementById("usersH1").textContent = `Registered users: ${users.length}`;
             });
         }
         else {

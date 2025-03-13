@@ -40,7 +40,7 @@ def getusers(token):
             filetoken = filedata.get("token")
 
             if token != filetoken:
-                return ""
+                return "Error"
 
         users = []
 
@@ -70,7 +70,7 @@ def DeleteUser():
                 filetoken = filedata.get("token")
 
                 if token != filetoken:
-                    return ""
+                    return "Error"
                 
             try:
                 os.remove(f"{BACKEND_FOLDER_PATH}/users/{user}/{user}.json")
@@ -91,6 +91,57 @@ def DeleteUser():
     
     return "Error"
 
+@app.route("/api/WarnUser", methods=["POST"])
+def WarnUser():
+    allowed_ip = os.getenv("ADMIN_IP")
+    ip = request.remote_addr
+
+    if request.method == "POST" and ip in allowed_ip:
+        data = request.get_json("a")
+        username = data.get("username")
+        token = data.get("token")
+        user = data.get("user")
+        message = data.get("message")
+
+        if username == "admin":
+            with open(f"{BACKEND_FOLDER_PATH}/users/admin/admin.json", "r") as f:
+                filedata = json.load(f)
+                filetoken = filedata.get("token")
+
+                if token != filetoken:
+                    return "Error"
+                
+            with open(f"{BACKEND_FOLDER_PATH}/users/{user}/warning.txt", "w") as f:
+                f.write(message)
+
+            return "200"
+        
+        return "Error"
+
+    return "Error"
+
+@app.route("/api/GetWarning/<username>/<token>")
+def GetWarning(username, token):
+    if os.path.exists(f"{BACKEND_FOLDER_PATH}/users/{username}/{username}.json"):
+        with open(f"{BACKEND_FOLDER_PATH}/users/{username}/{username}.json", "r") as f:
+            filedata = json.load(f)
+            filetoken = filedata.get("token")
+
+            if token != filetoken:
+                return "Error"
+            
+        if os.path.exists(f"{BACKEND_FOLDER_PATH}/users/{username}/warning.txt"):
+            warning = ""
+            with open(f"{BACKEND_FOLDER_PATH}/users/{username}/warning.txt", "r") as f:
+                warning = f.read()
+
+            os.remove(f"{BACKEND_FOLDER_PATH}/users/{username}/warning.txt")
+
+            return warning
+        
+        return "No warning"
+    
+    return "Error"
 
 @app.errorhandler(404)
 def notfound(e):

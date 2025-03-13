@@ -43,6 +43,11 @@ body {
     font-family: arial;
     cursor: default;
 }
+.dashborddiv hr {
+    width: 80%;
+    border: 1px white solid;
+    border-radius: 15px;
+}
 .users {
     height: fit-content;
     max-height: 510px;
@@ -59,4 +64,27 @@ body {
 }
 .users hr {
     width: 10%;
+}
+.dashborddiv input {
+    width: 60%;
+    color: white;
+    background: #ffffff16;
+    border: 2px #c4cac639 solid;
+    border-radius: 10px;
+    font-size: 20px;
+    outline: none;
+    margin: 5px;
+    padding: 10px;
+    text-indent: 2px;
+}
+.dashborddiv button {
+    width: 35%;
+    color: white;
+    font-size: 25px;
+    padding: 5px;
+    background: #ffffff16;
+    border: 2px #c4cac639 solid;
+    border-radius: 10px;
+    margin-top: 20px;
+    cursor: pointer;
 }

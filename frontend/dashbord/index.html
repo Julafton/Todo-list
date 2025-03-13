@@ -11,13 +11,18 @@
 <body>
     <div class="container">
         <nav>
-            <button>Home</button>
+            <button onclick="window.location.href = '/'">Home</button>
             <button onclick="window.location.href='/profile'">Profile</button>
         </nav>
 
         <div class="dashborddiv">
             <h1 id="usersH1">Registered users: </h1>
             <div class="users"></div>
+            <hr>
+            <input type="text" placeholder="User: " id="userinput"><br>
+            <input type="text" placeholder="Message: " id="messageinput"><br>
+            <button onclick="WarnUser()">Warn</button><br>
+            <button onclick="DeleteUser()">Delete</button><br>
         </div>
     </div>
 
