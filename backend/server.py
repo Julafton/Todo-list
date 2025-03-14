@@ -29,6 +29,22 @@ def Dashbord():
     
     return redirect("/")
 
+@app.route("/friends")
+def friends():
+    return render_template("friends/index.html")
+
+@app.route("/api/friends", methods=["GET", "POST"])
+def managefriends():
+    if request.method == "GET":
+        data = request.get_json("a")
+        username = data.get("username")
+        token = data.get("token")
+
+        if os.path.exists(f"{BACKEND_FOLDER_PATH}/users/{username}/{username}.json"):
+            with open(f"{BACKEND_FOLDER_PATH}/users/{username}/{username}.json", "r") as f:
+                filedata = json.load(f)
+                
+
 @app.route("/api/getusers/<token>")
 def getusers(token):
     allowed_ip = os.getenv("ADMIN_IP")
@@ -203,7 +219,7 @@ def register():
             if not os.path.exists(f"{BACKEND_FOLDER_PATH}/users/{username}/{username}.json"):
                 os.mkdir(f"{BACKEND_FOLDER_PATH}/users/{username}")
                 with open(f"{BACKEND_FOLDER_PATH}/users/{username}/{username}.json", "w") as f:
-                    data = {"username": username, "password": str(bcrypt.hashpw(password, bcrypt.gensalt())).replace("'", "", 1).replace("b", "", 1)[:-1], "token": str(uuid4())}
+                    data = {"username": username, "password": str(bcrypt.hashpw(password, bcrypt.gensalt())).replace("'", "", 1).replace("b", "", 1)[:-1], "token": str(uuid4()), "friends": []}
                     json.dump(data, f)
 
                     return "200"
